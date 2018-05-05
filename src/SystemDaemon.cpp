@@ -15,14 +15,6 @@ EssexEngine::Daemons::System::SystemDaemon::SystemDaemon(WeakPointer<Context> _c
 
 EssexEngine::Daemons::System::SystemDaemon::~SystemDaemon() {}
 
-extern "C" {
-    void daemon_init(EssexEngine::Context* context) {
-        context->RegisterDaemon<EssexEngine::Daemons::System::SystemDaemon>(
-            new EssexEngine::Daemons::System::SystemDaemon(context)
-        );
-    }
-}
-
 void EssexEngine::Daemons::System::SystemDaemon::StartTimer() {
     GetDriver()->StartTimer();
 }
