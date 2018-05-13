@@ -17,10 +17,13 @@ using EssexEngine::WeakPointer;
 using EssexEngine::Daemons::System::SystemDaemon;
 
 extern "C" {
-    void daemon_init(WeakPointer<Context> context) {
+    void* daemon_init(WeakPointer<Context> context) {
+        SystemDaemon* daemon = new SystemDaemon(context);
+
         context->RegisterDaemon<SystemDaemon>(
-            new SystemDaemon(context)
+            daemon
         );
+
+        return daemon;
     }
 }
-
